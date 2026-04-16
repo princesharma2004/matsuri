@@ -1,0 +1,57 @@
+{
+  "name": "matsuri-cms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Matsuri CMS app",
+  "author": "Muhammad Akmal Hisyam",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src",
+    "type:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.3.7",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/poppins": "^4.5.10",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.8",
+    "axios": "^1.1.3",
+    "eslint-config-next": "13.0.2",
+    "framer-motion": "^7.6.5",
+    "js-cookie": "^3.0.1",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.4",
+    "next": "13.0.2",
+    "next-seo": "^5.14.1",
+    "next-sitemap": "^3.1.32",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.6.0",
+    "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "prettier": "^2.7.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akmalhisyammm/matsuri"
+  },
+  "bugs": {
+    "url": "https://github.com/akmalhisyammm/matsuri/issues"
+  }
+}

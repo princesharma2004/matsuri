@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: matsuri-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  server:
+    build: ./server
+    container_name: matsuri-server
+    ports:
+      - "5000:3000"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017/matsuri
+      - MONGODB_NAME=matsuri
+      - JWT_SECRET_KEY=tyftuvhubyuvfybkjniyvgubijhyulvgtubiuhtuctcgyvxerxdrcgygbyubvgkyvhubilvyvkhbiulvgvjbnilvfyhbijgtycgyhbiuovtkybgvghgvbkyuvilvgtjugviy
+      - JWT_REFRESH_SECRET_KEY=gubihyucvygniohggvijniuvgvbiuhycfybugvfyvbiohkyuggiuhkuyvukyucghbkhuvcvbkyuvfghbvkyuvghbgtbkyuvuyvkgybkyugvubiugbkyugvhubbv
+      - JWT_EXPIRATION=24h
+      - JWT_REFRESH_EXPIRATION=30d
+    volumes:
+      - ./server/public/uploads:/usr/src/app/public/uploads
+    depends_on:
+      - mongodb
+
+  client:
+    build:
+      context: ./client
+      args:
+        - NEXT_PUBLIC_API_URL=http://15.206.116.93:5000
+        - NEXT_PUBLIC_IMAGE_DOMAIN=15.206.116.93
+    container_name: matsuri-client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+  cms:
+    build:
+      context: ./cms
+      args:
+        - NEXT_PUBLIC_API_URL=http://15.206.116.93:5000
+    container_name: matsuri-cms
+    ports:
+      - "3001:3000"
+    depends_on:
+      - server
+
+volumes:
+  mongodb_data:
